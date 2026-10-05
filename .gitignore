@@ -1,0 +1,12 @@
+# 端到端验证的临时产物（跑一次生成一次，不入库）
+.shots/
+.e2e/*.log
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 编辑器
+.vscode/
+.idea/
+*.swp

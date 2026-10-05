@@ -1,0 +1,48 @@
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+const m = await import(pathToFileURL('/Users/yihang/.workbuddy/binaries/node/workspace/node_modules/playwright-core/index.js').href);
+const chromium = m.chromium || (m.default||{}).chromium;
+const ROOT='/Users/yihang/WorkBuddy/2026-10-05-10-45-15/java-od-guide';
+const OUT=path.join(ROOT,'.shots');
+const b=await chromium.launch({executablePath:'/Users/yihang/Library/Caches/ms-playwright/chromium-1193/chrome-mac/Chromium.app/Contents/MacOS/Chromium',headless:true,args:['--no-sandbox']});
+const ctx=await b.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1.5,locale:'zh-CN'});
+const p=await ctx.newPage();
+await p.goto('file://'+path.join(ROOT,'index.html'),{waitUntil:'load'});
+await p.waitForTimeout(1000);
+const go=async(sel,name,off=0)=>{
+  if(sel) await p.evaluate(([s,o])=>{const e=document.querySelector(s);window.scrollTo({top:e.getBoundingClientRect().top+scrollY-52-o})},[sel,off]);
+  await p.waitForTimeout(450);
+  await p.screenshot({path:path.join(OUT,name+'.png')});
+  console.log('shot',name);
+};
+await go(null,'S1-hero');
+await go('#c1','S2-ch1',60);
+await go('[data-viz="v-ref"]','S3-viz-ref');
+await go('[data-viz="hashmap"]','S4-viz-hashmap');
+await go('[data-viz="lock"]','S5-viz-lock');
+await go('[data-viz="pool"]','S6-viz-pool');
+await go('[data-viz="jvm"]','S7-viz-jvm');
+await go('[data-viz="gc"]','S8-viz-gc');
+await go('[data-viz="bean"]','S9-viz-bean');
+await go('[data-viz="chm"]','S10-viz-chm');
+await go('[data-viz="jmm"]','S11-viz-jmm');
+await go('.qa-list','S12-qa');
+await go('.flips','S13-flip');
+// 夜���
+await p.click('#themeBtn'); await p.waitForTimeout(500);
+await go('[data-viz="hashmap"]','S14-night-hashmap');
+await go('.code','S15-night-code');
+await p.click('#themeBtn'); await p.waitForTimeout(400);
+// 移动端
+const mob=await (await b.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,locale:'zh-CN'})).newPage();
+await mob.goto('file://'+path.join(ROOT,'index.html'),{waitUntil:'load'});
+await mob.waitForTimeout(1200);
+await mob.screenshot({path:path.join(OUT,'M1-hero.png')});
+await mob.evaluate(()=>{const e=document.querySelector('[data-viz="hashmap"]');window.scrollTo({top:e.getBoundingClientRect().top+scrollY-48})});
+await mob.waitForTimeout(600);
+await mob.screenshot({path:path.join(OUT,'M2-viz.png')});
+await mob.evaluate(()=>{const e=document.querySelector('.qa-list');window.scrollTo({top:e.getBoundingClientRect().top+scrollY-48})});
+await mob.waitForTimeout(500);
+await mob.screenshot({path:path.join(OUT,'M3-qa.png')});
+console.log('mobile done');
+await b.close();

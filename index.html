@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-grid="off">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>后端面试题库 · Java</title>
+<meta name="description" content="依据 386 条真实面经反推的 Java 后端面试考点地图。12 章 · 128 道问答 · 12 组图解，面向华为 OD 与大厂后端岗。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23C7000B'/%3E%3Cpath d='M9 7h14v3H9zM9 13h14v3H9zM9 19h9v3H9zM9 25h6v2H9z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<div class="gridlines" aria-hidden="true"></div>
+
+<!-- ============ MASTHEAD ============ -->
+<header class="masthead">
+  <a class="masthead__brand" href="#top">
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+      <rect class="mark__bg" x="0" y="0" width="32" height="32"/>
+      <path class="mark__bars" d="M9 7h14v3H9zM9 13h14v3H9zM9 19h9v3H9zM9 25h6v2H9z"/>
+    </svg>
+    <span class="wordmark">后端题库<em>Java</em></span>
+  </a>
+
+  <div class="masthead__now">
+    <span class="now__no" id="nowNo">00</span>
+    <span class="now__t" id="nowT">封面</span>
+    <span class="now__count"><b id="nowIdx">01</b> / <span id="nowTotal">12</span></span>
+  </div>
+
+  <div class="masthead__right">
+    <div class="searchbox">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="4.4"/><path d="M9.3 9.3 12.6 12.6"/></svg>
+      <input id="q" type="search" placeholder="搜索知识点…" autocomplete="off" aria-label="搜索知识点">
+      <kbd>/</kbd>
+    </div>
+    <div class="prog">
+      <span class="prog__label">已掌握</span>
+      <span class="prog__num" id="pnum">0/12</span>
+      <span class="prog__bar"><i id="pbar"></i></span>
+    </div>
+    <button class="iconbtn" id="themeBtn" title="切换明暗 (t)" aria-label="切换明暗主题">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10" cy="10" r="4"/><path d="M10 1v2M10 17v2M1 10h2M17 10h2M3.6 3.6l1.4 1.4M15 15l1.4 1.4M16.4 3.6L15 5M5 15l-1.4 1.4"/></svg>
+    </button>
+  </div>
+
+  <i class="readbar" id="readbar"></i>
+</header>
+
+<div class="results" id="results" role="listbox" aria-label="搜索结果"></div>
+
+<!-- ============ RAIL ============ -->
+<aside class="rail">
+  <div class="rail__hd"><span>目录</span><span>Index</span></div>
+  <nav id="railnav" aria-label="目录"></nav>
+</aside>
+
+<!-- ============ MAIN ============ -->
+<main id="top">
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="hero__kicker">依据 386 条真实面经校准 · 校招 / OD 应届</div>
+
+      <div class="hero__grid">
+        <h1 class="hero__t"><span>后端</span><span class="thin">题库</span></h1>
+
+        <div class="hero__meta">
+          <dl>
+            <dt>目标</dt><dd>华为 OD / 大厂</dd>
+            <dt>章节</dt><dd>12 章</dd>
+            <dt>图解</dt><dd>12 组</dd>
+            <dt>问答</dt><dd>128 道</dd>
+            <dt>手写</dt><dd>30 道</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="hero__foot">
+        <p class="hero__intro">
+          不是教程，是<strong>从 386 条真实面经里反推出的考点地图</strong>。每章都标注了它在真实面试里的出现频次——
+          该背的标 ★★★★★，可以缓的先跳过。
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--red" href="#c1">从第 1 章开始</a>
+          <a class="btn" href="#c10">看高频考点分布</a>
+        </div>
+      </div>
+    </section>
+
+    <div id="content"></div>
+
+    <div class="hr"></div>
+    <footer class="colophon">
+      <div><b>读法</b>先过图解建立直觉，再看代码。面试时你要能<b>边画边说</b>，不是背定义。</div>
+      <div><b>范围</b>Java 后端岗：语言基础 / 集合 / 并发 / JVM / Spring 生态 / MySQL / Redis / 网络 / 分布式 / 系统设计 / 算法 / 面经话术。</div>
+      <div><b>快捷键</b><code style="font-family:var(--ff-mono);font-size:11px">/</code> 搜索 · <code style="font-family:var(--ff-mono);font-size:11px">g</code> 栅格 · <code style="font-family:var(--ff-mono);font-size:11px">t</code> 主题 · 图上 <code style="font-family:var(--ff-mono);font-size:11px">←→</code> 步进</div>
+    </footer>
+
+  </div>
+</main>
+
+<button class="toTop" id="toTop" aria-label="回到顶部">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 12V2M2.5 6.5 7 2l4.5 4.5"/></svg>
+</button>
+
+<!-- ============ TWEAKS ============ -->
+<aside class="tweaks" id="tweaks">
+  <div class="tweaks__hd" id="tweaksHd">Tweaks</div>
+  <div class="tweaks__bd">
+    <div class="tweaks__row"><span>主题</span>
+      <span class="tweaks__sw">
+        <button class="sw-red is-on" data-theme-set="light" title="浅色"></button>
+        <button class="sw-ink" data-theme-set="night" title="深色"></button>
+      </span>
+    </div>
+    <div class="tweaks__row"><span>正文字号</span><input type="range" id="fs" min="15" max="19" value="16"></div>
+    <div class="tweaks__row"><span>显示栅格</span><span class="tweaks__sw"><button id="gridBtn" title="12 栏基准线">12</button></span></div>
+    <div class="tweaks__row"><span>图解自动播放</span><input type="checkbox" id="autoplay"></div>
+    <div class="tweaks__kbd">
+      <b>操作</b> 点卡片标题左侧方框 = 标记已掌握<br>
+      <b>图解</b> 悬停后可用 ← → 步进，空格播放<br>
+      <b>速记</b> 点击闪卡翻面，答不上来就再翻回去
+    </div>
+  </div>
+</aside>
+
+<div class="tip" id="tip"></div>
+
+<script src="assets/js/viz.js"></script>
+<script src="assets/js/viz-ref.js"></script>
+<script src="assets/js/viz-jvm.js"></script>
+<script src="assets/js/viz-conc.js"></script>
+<script src="assets/js/viz-gc.js"></script>
+<script src="assets/js/viz-net.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/data-extra.js"></script>
+<script src="assets/js/data-deep.js"></script>
+<script src="assets/js/data-algo.js"></script>
+<script>
+  // 原 DATA 顺序：c1语言 c2集合 c3并发 c4JVM c5Spring c6并发容器 c7MySQL c8算法 c9面经
+  // 新版用 DEEP(深化版MySQL) / ALGO(扩充版算法) 替换原来的 c7 / c8
+  window.DATA = [
+    ...window.DATA.slice(0, 6),   // c1 ~ c6 保留
+    ...window.DEEP,               // 深化版 MySQL/Redis（替换旧 c7）
+    ...window.ALGO,               // 扩充版算法（替换旧 c8）
+    ...window.DATA.slice(8, 9),   // c9 面经话术
+    ...window.EXTRA               // c10 网络 / c11 分布式 / c12 系统设计
+  ];
+  // 重新编号，让目录序号连续
+  window.DATA.forEach((c, i) => { c.no = String(i + 1).padStart(2, '0'); });
+</script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
